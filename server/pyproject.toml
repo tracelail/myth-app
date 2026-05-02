@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "myth-app"
+version = "0.1.0"
+description = "A personal mythology/folklore/cryptid grimoire server"
+authors = [{ name = "Lail J", email = "lail.j@northeastern.edu" }]
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn>=0.32",
+    "sqlalchemy>=2.0",
+    "httpx>=0.28",
+    "pydantic>=2.10",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/myth_app"]
+
+[tool.ruff]
+src = ["src"]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "UP"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

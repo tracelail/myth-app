@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "The Grimoire",
+    "slug": "myth-app",
+    "version": "1.0.0",
+    "scheme": "myth-app",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#0d0c0a",
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#0d0c0a"
+      }
+    },
+    "plugins": ["expo-router"],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

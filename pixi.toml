@@ -1,0 +1,45 @@
+[workspace]
+name = "myth-app"
+version = "0.1.0"
+description = "A personal mythology/folklore/cryptid grimoire server"
+authors = ["Lail J <lail.j@northeastern.edu>"]
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-arm64"]
+
+# ── Conda dependencies ────────────────────────────────────────────────────────
+
+[dependencies]
+python = ">=3.12,<3.14"
+fastapi = ">=0.115"
+uvicorn = ">=0.32"
+sqlalchemy = ">=2.0"
+httpx = ">=0.28"
+pydantic = ">=2.10"
+
+[feature.dev.dependencies]
+ruff = ">=0.9"
+mypy = ">=1.14"
+pytest = ">=8.0"
+pytest-cov = ">=6.0"
+pre-commit = ">=4.0"
+watchfiles = ">=1.0"
+
+# ── PyPI dependencies ─────────────────────────────────────────────────────────
+
+[pypi-dependencies]
+myth-app = { path = "server/", editable = true }
+
+# ── Tasks ─────────────────────────────────────────────────────────────────────
+
+[tasks]
+serve     = { cmd = "uvicorn myth_app.main:app --host 0.0.0.0 --port 8000 --reload", description = "Start dev server (binds 0.0.0.0 for Tailscale)" }
+test      = { cmd = "pytest server/tests/ -v",                                        description = "Run test suite" }
+lint      = { cmd = "ruff check server/src/ server/tests/",                           description = "Lint with ruff" }
+format    = { cmd = "ruff format server/src/ server/tests/",                          description = "Format with ruff" }
+typecheck = { cmd = "mypy server/src/",                                               description = "Type check with mypy" }
+check     = { depends-on = ["lint", "typecheck", "test"],                             description = "Run all checks" }
+
+# ── Environments ──────────────────────────────────────────────────────────────
+
+[environments]
+default = { features = ["dev"], solve-group = "default" }

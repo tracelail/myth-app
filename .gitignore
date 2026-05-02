@@ -1,0 +1,20 @@
+# Database
+grimoire.db
+
+# Pixi environment
+.pixi/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+build/
+dist/
+
+# Env / secrets
+.env.local
+.env

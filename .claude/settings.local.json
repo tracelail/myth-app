@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(pixi run *)",
+      "Bash(xargs ls *)"
+    ]
+  }
+}
