@@ -4,6 +4,9 @@ grimoire.db
 # Pixi environment
 .pixi/
 
+# Node
+node_modules/
+
 # Python
 __pycache__/
 *.pyc

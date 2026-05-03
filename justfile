@@ -68,12 +68,17 @@ client:
 
 # ── Utilities ─────────────────────────────────────────────────────────────────
 
-# Remove all caches and build artifacts
+# Remove caches and build artifacts (safe to run anytime)
 clean:
     rm -rf build/ dist/ .pytest_cache/ .ruff_cache/ .mypy_cache/ .coverage server/.pytest_cache/
     find . -type d -name __pycache__ -exec rm -rf {} +
     find . -type f -name "*.pyc" -delete
     @echo "✓ Cleaned."
+
+# Remove everything including dependencies (run 'just setup' + 'cd client && npm install' after)
+clean-all: clean
+    rm -rf .pixi/ client/node_modules/
+    @echo "✓ Deep clean done. Run 'just setup' then 'cd client && npm install' to restore."
 
 # Update all dependencies to latest compatible versions
 update:

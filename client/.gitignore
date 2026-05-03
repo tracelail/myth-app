@@ -11,3 +11,6 @@ expo-env.d.ts
 
 # Expo
 .expo/
+
+# Dependencies
+node_modules/
