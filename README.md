@@ -104,7 +104,7 @@ just format     # auto-format
 
 ## About
 
-Made by [Lail J](https://github.com/tracelail) as a passion project — mythology and folklore have always been a core interest — and as a learning exercise with **Claude Code**, Anthropic's CLI coding assistant.
+Made by [Trace Lail](https://github.com/tracelail) as a passion project — mythology and folklore have always been a core interest — and as a learning exercise with **Claude Code**, Anthropic's CLI coding assistant.
 
 ---
 

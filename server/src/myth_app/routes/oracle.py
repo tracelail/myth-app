@@ -33,7 +33,7 @@ async def oracle_lookup(payload: OracleRequest) -> OracleResponse:
         async with httpx.AsyncClient(timeout=60.0) as client:
             resp = await client.post(
                 f"{OLLAMA_BASE_URL}/api/generate",
-                json={"model": OLLAMA_MODEL, "prompt": prompt, "stream": False},
+                json={"model": OLLAMA_MODEL, "prompt": prompt, "stream": False, "format": "json"},
             )
             resp.raise_for_status()
     except httpx.RequestError as exc:
@@ -43,14 +43,16 @@ async def oracle_lookup(payload: OracleRequest) -> OracleResponse:
 
     raw: str = resp.json().get("response", "")
 
-    # Strip markdown code fences if the model wraps its JSON
+    # Extract JSON — handle models that wrap output in prose or code fences
     stripped = raw.strip()
     if stripped.startswith("```"):
         lines = stripped.splitlines()
-        raw = "\n".join(lines[1:-1])
+        stripped = "\n".join(lines[1:-1])
+    elif "{" in stripped:
+        stripped = stripped[stripped.index("{"):stripped.rindex("}") + 1]
 
     try:
-        data: dict[str, str] = json.loads(raw)
+        data: dict[str, str] = json.loads(stripped)
     except json.JSONDecodeError as exc:
         raise HTTPException(status_code=502, detail="Oracle returned non-JSON response") from exc
 

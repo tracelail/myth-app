@@ -3,7 +3,10 @@
     "allow": [
       "Bash(npm install *)",
       "Bash(pixi run *)",
-      "Bash(xargs ls *)"
+      "Bash(xargs ls *)",
+      "Bash(curl -s -X POST http://localhost:8000/oracle/ -H \"Content-Type: application/json\" -d '{\"subject\":\"baba yaga\"}')",
+      "Bash(curl -s http://localhost:11434/api/generate -d '{\"model\":\"llama3.1\",\"prompt\":\"You are a scholar of mythology, folklore, and cryptids. Generate a grimoire entry for: baba yaga\\\\n\\\\nReturn ONLY valid JSON with these exact fields:\\\\n{\\\\n \\\\\"title\\\\\": \\\\\"The entity'\\\\''s name\\\\\",\\\\n \\\\\"category\\\\\": \\\\\"One of: Greek Myth, Norse Myth, Folklore, Cryptid, Other\\\\\",\\\\n \\\\\"tags\\\\\": \\\\\"comma-separated tags \\(3-5 short descriptors\\)\\\\\",\\\\n \\\\\"body\\\\\": \\\\\"2-3 paragraphs separated by \\\\\\\\n\\\\\\\\n\\\\\"\\\\n}\\\\n\\\\nNo markdown, no extra text — pure JSON only.\",\"stream\":false}')",
+      "Bash(python3 -c \"import sys,json; print\\(json.load\\(sys.stdin\\)['response']\\)\")"
     ]
   }
 }
